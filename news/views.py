@@ -7,21 +7,21 @@ def news_home(request):
     return render(request, 'news/news_home.html', {'news': news})
 
 def create(request):
-    eror = ''
+    error = ''
     if request.method == 'POST':
         form = ArticlesForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('news_home')
         else:
-            eror = 'Форма была неверной'
+            error = 'Форма была неверной'
 
 
     form = ArticlesForm()
 
     data = {
         'form': form,
-        'eror': eror
+        'error': error
     }
 
     return render(request, 'news/create.html', data)
